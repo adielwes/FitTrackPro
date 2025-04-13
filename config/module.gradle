@@ -1,0 +1,32 @@
+ext {
+    compileSdkVersion = 35
+    minSdkVersion = 33
+    targetSdkVersion = 35
+    kotlinCompilerExtensionVersion = '1.5.8'
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.hasPlugin('com.android.library') || project.plugins.hasPlugin('com.android.application')) {
+            android {
+                compileSdkVersion rootProject.ext.compileSdkVersion
+
+                defaultConfig {
+                    minSdk rootProject.ext.minSdkVersion
+                    targetSdk rootProject.ext.targetSdkVersion
+                }
+
+                buildFeatures {
+                    compose true
+                }
+
+                composeOptions {
+                    kotlinCompilerExtensionVersion rootProject.ext.kotlinCompilerExtensionVersion
+                }
+                kotlinOptions {
+                    jvmTarget = '11'
+                }
+            }
+        }
+    }
+}
