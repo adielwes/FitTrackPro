@@ -4,5 +4,5 @@ data class Workout(
     val id: Long,
     val date: Long,
     val plan: WorkoutPlan,
-    val duratin: Long
+    val durationMinutes: Long
 )
