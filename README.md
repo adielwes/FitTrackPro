@@ -1,6 +1,6 @@
 ## 🏋️ TrackFit – Gym & Nutrition Tracker
 
-**TrackFit** is a modern Android app built to help users manage their workout routines, track their diet, and monitor body progress over time. Designed with clean architecture principles, this project also serves as a **technical showcase** for Android development best practices at a Pleno/Senior level.
+**TrackFit** is a modern Android app built to help users manage their workout routines, track their diet, and monitor body progress over time. Designed with clean architecture principles, this project also serves as a **technical showcase** for Android development best practices.
 
 ---
 
