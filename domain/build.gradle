@@ -3,7 +3,10 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
-dependencies {
+android {
+    namespace "com.wesleyadiel.fittrackpro.domain"
+}
 
+dependencies {
     implementation libs.androidx.core.ktx
 }

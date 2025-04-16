@@ -1,7 +1,7 @@
 package com.wesleyadiel.fittrackerpro.domain.workout.usecase
 
-import com.wesleyadiel.fittrackerpro.domain.model.workout.Workout
-import com.wesleyadiel.fittrackerpro.domain.repository.WorkoutRepository
+import com.wesleyadiel.fittrackerpro.domain.workout.model.Workout
+import com.wesleyadiel.fittrackerpro.domain.workout.repository.WorkoutRepository
 
 class DeleteWorkout(private val repository: WorkoutRepository) {
 
