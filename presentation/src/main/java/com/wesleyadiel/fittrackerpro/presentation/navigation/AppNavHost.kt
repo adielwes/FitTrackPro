@@ -15,6 +15,8 @@ import com.wesleyadiel.fittrackerpro.presentation.workout.screen.WorkoutScreen
 fun AppNavHost() {
     val navController = rememberNavController()
 
+    val backClick: () -> Unit = { navController.popBackStack() }
+
     NavHost(navController = navController, startDestination = Routes.WORKOUT_LIST) {
         composable(Routes.WORKOUT_LIST) {
             WorkoutScreen(onNavigateToDetail = { id ->
@@ -36,7 +38,7 @@ fun AppNavHost() {
 
         composable("workout_detail/{id}") { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")?.toLongOrNull()
-            WorkoutDetailScreen(id)
+            WorkoutDetailScreen(id, backClick)
         }
 
         composable("meal_detail/{id}") { backStackEntry ->
