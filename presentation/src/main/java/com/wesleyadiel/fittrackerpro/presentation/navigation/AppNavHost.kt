@@ -6,6 +6,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.BodyStatsDetailScreen
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.BodyStatsScreen
+import com.wesleyadiel.fittrackerpro.presentation.home.HomeScreen
 import com.wesleyadiel.fittrackerpro.presentation.meal.screen.MealDetailScreen
 import com.wesleyadiel.fittrackerpro.presentation.meal.screen.MealScreen
 import com.wesleyadiel.fittrackerpro.presentation.workout.screen.WorkoutDetailScreen
@@ -17,7 +18,11 @@ fun AppNavHost() {
 
     val backClick: () -> Unit = { navController.popBackStack() }
 
-    NavHost(navController = navController, startDestination = Routes.WORKOUT_LIST) {
+    NavHost(navController = navController, startDestination = Routes.HOME_SCREEN) {
+        composable(Routes.HOME_SCREEN) {
+            HomeScreen(navController)
+        }
+
         composable(Routes.WORKOUT_LIST) {
             WorkoutScreen(onNavigateToDetail = { id ->
                 navController.navigate("workout_detail/$id")

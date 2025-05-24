@@ -1,6 +1,7 @@
 package com.wesleyadiel.fittrackerpro.presentation.navigation
 
 object Routes {
+    const val HOME_SCREEN = "home"
     const val WORKOUT_LIST = "workouts"
     const val MEAL_LIST = "meals"
     const val BODY_STATS_LIST = "progress"
