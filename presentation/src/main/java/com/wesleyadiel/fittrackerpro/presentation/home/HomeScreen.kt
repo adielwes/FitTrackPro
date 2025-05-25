@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
@@ -20,6 +17,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.wesleyadiel.fittrackerpro.presentation.home.components.ProgressSummary
 import com.wesleyadiel.fittrackerpro.presentation.home.components.WorkoutCard
 import com.wesleyadiel.fittrackerpro.presentation.home.components.WorkoutPlanCard
+import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.BODY_STATS_LIST
+import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.REGISTER_BODY_STATS_ROUTE
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -42,13 +41,12 @@ fun HomeScreen(navController: NavController) {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Progresso físico
         ProgressSummary(
             weight = 73.0,
             bodyFat = 15.0,
             muscleMass = 35.0,
-            onRegisterClick = { navController.navigate("bodyStats") },
-            onHistoryClick = { navController.navigate("bodyStats") }
+            onRegisterClick = { navController.navigate(REGISTER_BODY_STATS_ROUTE) },
+            onHistoryClick = { navController.navigate(BODY_STATS_LIST) }
         )
 
         // Treino do dia

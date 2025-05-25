@@ -1,11 +1,14 @@
 package com.wesleyadiel.fittrackerpro.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.BodyStatsDetailScreen
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.BodyStatsScreen
+import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.RegisterBodyStatsScreen
+import com.wesleyadiel.fittrackerpro.presentation.bodystats.viewmodel.RegisterBodyStatsViewModel
 import com.wesleyadiel.fittrackerpro.presentation.home.HomeScreen
 import com.wesleyadiel.fittrackerpro.presentation.meal.screen.MealDetailScreen
 import com.wesleyadiel.fittrackerpro.presentation.meal.screen.MealScreen
@@ -21,6 +24,19 @@ fun AppNavHost() {
     NavHost(navController = navController, startDestination = Routes.HOME_SCREEN) {
         composable(Routes.HOME_SCREEN) {
             HomeScreen(navController)
+        }
+
+        composable(route = Routes.REGISTER_BODY_STATS_ROUTE) {
+            val viewModel: RegisterBodyStatsViewModel = hiltViewModel()
+            RegisterBodyStatsScreen(
+                uiState = viewModel.uiState.value,
+                onEvent = viewModel::onEvent,
+                onSave = {
+                    viewModel.saveBodyStats()
+                    navController.popBackStack()
+                },
+                onBack = { navController.popBackStack() }
+            )
         }
 
         composable(Routes.WORKOUT_LIST) {

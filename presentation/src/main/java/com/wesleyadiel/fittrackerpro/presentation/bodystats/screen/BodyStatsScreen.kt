@@ -1,6 +1,10 @@
 package com.wesleyadiel.fittrackerpro.presentation.bodystats.screen
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -15,7 +19,12 @@ fun BodyStatsScreen(onNavigateToDetail: (Long) -> Unit) {
     val viewModel: BodyStatsViewModel = hiltViewModel()
     val state = viewModel.uiState.collectAsState()
 
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier.padding(
+            WindowInsets.statusBars
+                .asPaddingValues()
+        ),
+    ) {
         items(state.value.bodyStats) { bodyStats ->
             BodyStatsItem(
                 bodyStats = bodyStats,

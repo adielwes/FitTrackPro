@@ -2,7 +2,7 @@ package com.wesleyadiel.fittrackerpro.presentation.bodystats.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetAllBodyStats
+import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetAllBodyStatsUseCase
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.state.BodyStatsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BodyStatsViewModel @Inject constructor(
-    private val getBodyStats: GetAllBodyStats
+    private val getBodyStats: GetAllBodyStatsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(BodyStatsUiState())

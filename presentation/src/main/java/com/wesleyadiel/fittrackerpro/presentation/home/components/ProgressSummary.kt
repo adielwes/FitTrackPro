@@ -30,20 +30,20 @@ fun ProgressSummary(
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text("Progresso Físico", style = MaterialTheme.typography.titleMedium)
+            Text("Physical Progress", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
-            Text("Peso: ${weight}kg")
-            Text("Gordura: ${bodyFat}%")
-            Text("Massa Muscular: ${muscleMass}kg")
+            Text("Wight: ${weight}kg")
+            Text("Body Fat: ${bodyFat}%")
+            Text("Skeletal Muscular Mass: ${muscleMass}kg")
             Spacer(Modifier.height(8.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(onClick = onRegisterClick) {
-                    Text("Registrar Progresso")
+                    Text("Register Progress")
                 }
                 OutlinedButton(onClick = onHistoryClick) {
-                    Text("Ver Histórico")
+                    Text("See History")
                 }
             }
         }

@@ -1,10 +1,10 @@
 package com.wesleyadiel.fittrackerpro.presentation.inject
 
 import com.wesleyadiel.fittrackerpro.domain.bodystats.repository.BodyStatsRepository
-import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.AddBodyStats
-import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.DeleteBodyStats
-import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetAllBodyStats
-import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetBodyStats
+import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.AddBodyStatsUseCase
+import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.DeleteBodyStatsUseCase
+import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetAllBodyStatsUseCase
+import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetBodyStatsUseCase
 import com.wesleyadiel.fittrackerpro.domain.meal.repository.MealRepository
 import com.wesleyadiel.fittrackerpro.domain.meal.usecase.AddMeal
 import com.wesleyadiel.fittrackerpro.domain.meal.usecase.DeleteMeal
@@ -27,22 +27,22 @@ object UseCaseModule {
     @Provides
     fun provideGetAllBodyStats(
         repository: BodyStatsRepository
-    ): GetAllBodyStats = GetAllBodyStats(repository)
+    ): GetAllBodyStatsUseCase = GetAllBodyStatsUseCase(repository)
 
     @Provides
     fun provideGetBodyStatsById(
         repository: BodyStatsRepository
-    ): GetBodyStats = GetBodyStats(repository)
+    ): GetBodyStatsUseCase = GetBodyStatsUseCase(repository)
 
     @Provides
     fun provideAddBodyStats(
         repository: BodyStatsRepository
-    ): AddBodyStats = AddBodyStats(repository)
+    ): AddBodyStatsUseCase = AddBodyStatsUseCase(repository)
 
     @Provides
     fun provideDeleteBodyStats(
         repository: BodyStatsRepository
-    ): DeleteBodyStats = DeleteBodyStats(repository)
+    ): DeleteBodyStatsUseCase = DeleteBodyStatsUseCase(repository)
 
     @Provides
     fun provideGetAllMeals(

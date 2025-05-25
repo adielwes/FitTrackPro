@@ -2,8 +2,9 @@ package com.wesleyadiel.fittrackerpro.domain.bodystats.usecase
 
 import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
 import com.wesleyadiel.fittrackerpro.domain.bodystats.repository.BodyStatsRepository
+import kotlinx.coroutines.flow.Flow
 
-class DeleteBodyStats(private val repository: BodyStatsRepository) {
+class GetAllBodyStatsUseCase(private val repository: BodyStatsRepository) {
 
-    suspend operator fun invoke(bodyStats: BodyStats) = repository.deleteBodyStats(bodyStats.id)
+    operator fun invoke() : Flow<List<BodyStats>> = repository.getAllBodyStats()
 }

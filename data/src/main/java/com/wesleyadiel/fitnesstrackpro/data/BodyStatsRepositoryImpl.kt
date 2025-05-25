@@ -17,8 +17,8 @@ class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
             weightKg = 73.5,
             bodyFatPercentage = 16.2,
             visceralFat = 9.0,
-            skeletalMuscleMasskg = 32.1,
-            photoPath = null
+            skeletalMuscleMassKg = 32.1,
+            photoUri = null
         ),
         BodyStats(
             id = 2L,
@@ -26,8 +26,8 @@ class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
             weightKg = 75.2,
             bodyFatPercentage = 17.0,
             visceralFat = 10.0,
-            skeletalMuscleMasskg = 31.8,
-            photoPath = null
+            skeletalMuscleMassKg = 31.8,
+            photoUri = null
         )
     ))
 

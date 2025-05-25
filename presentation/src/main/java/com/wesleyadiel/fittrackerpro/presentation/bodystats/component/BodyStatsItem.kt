@@ -21,7 +21,7 @@ fun BodyStatsItem(bodyStats: BodyStats, modifier: Modifier = Modifier) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = "Date: ${bodyStats.date}")
             Text(text = "Weight: ${bodyStats.weightKg} kg")
-            Text(text = "Muscle mass: ${bodyStats.skeletalMuscleMasskg} kg")
+            Text(text = "Muscle mass: ${bodyStats.skeletalMuscleMassKg} kg")
             Text(text = "Body fat: ${bodyStats.bodyFatPercentage}%")
             Text(text = "Visceral fat: ${bodyStats.visceralFat}")
         }
