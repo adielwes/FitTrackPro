@@ -7,4 +7,5 @@ sealed class RegisterBodyStatsEvent {
     data class OnSkeletalMuscleChanged(val value: String) : RegisterBodyStatsEvent()
     object OnAddPhotoClicked : RegisterBodyStatsEvent()
     object OnRemovePhotoClicked : RegisterBodyStatsEvent()
+    data class OnDateChanged(val value: Long) : RegisterBodyStatsEvent()
 }

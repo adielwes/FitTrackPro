@@ -43,6 +43,9 @@ class RegisterBodyStatsViewModel @Inject constructor(
             RegisterBodyStatsEvent.OnRemovePhotoClicked -> {
                 uiState.value = uiState.value.copy(photoUri = null)
             }
+            is RegisterBodyStatsEvent.OnDateChanged -> {
+                uiState.value = uiState.value.copy(date = event.value)
+            }
         }
     }
 

@@ -1,6 +1,9 @@
 package com.wesleyadiel.fittrackerpro.presentation.bodystats.screen
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -22,13 +25,22 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Image
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -36,9 +48,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.event.RegisterBodyStatsEvent
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.state.RegisterBodyStatsUiState
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterBodyStatsScreen(
     uiState: RegisterBodyStatsUiState,
@@ -46,6 +61,10 @@ fun RegisterBodyStatsScreen(
     onSave: () -> Unit,
     onBack: () -> Unit
 ) {
+
+    var showDatePicker by remember { mutableStateOf(false) }
+    val interactionSource = remember { MutableInteractionSource() }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,17 +99,26 @@ fun RegisterBodyStatsScreen(
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            OutlinedTextField(
-                value = LocalDate.ofEpochDay(uiState.date)
-                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                onValueChange = { /* to call DatePicker here */ },
-                readOnly = true,
-                label = { Text("Data") },
-                trailingIcon = {
-                    Icon(Icons.Default.DateRange, contentDescription = "Select Data")
-                },
-                modifier = Modifier.fillMaxWidth()
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { showDatePicker = true }
+            ) {
+                OutlinedTextField(
+                    value = LocalDate.ofEpochDay(uiState.date)
+                        .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    onValueChange = {},
+                    label = { Text("Date") },
+                    enabled = false,
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = "Select date"
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
             OutlinedTextField(
                 value = uiState.weight,
@@ -158,6 +186,45 @@ fun RegisterBodyStatsScreen(
                     }
                 }
             }
+        }
+    }
+
+    if (showDatePicker) {
+        val datePickerState = rememberDatePickerState(
+            initialSelectedDateMillis = LocalDate.ofEpochDay(uiState.date)
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli()
+        )
+
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        datePickerState.selectedDateMillis?.let { millis ->
+                            val date = Instant.ofEpochMilli(millis)
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate()
+                            onEvent(
+                                RegisterBodyStatsEvent.OnDateChanged(
+                                    date.toEpochDay()
+                                )
+                            )
+                        }
+                        showDatePicker = false
+                    }
+                ) {
+                    Text("OK")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDatePicker = false }) {
+                    Text("Cancel")
+                }
+            }
+        ) {
+            DatePicker(state = datePickerState)
         }
     }
 }
