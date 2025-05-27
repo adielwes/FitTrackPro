@@ -5,23 +5,18 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -30,8 +25,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Image
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,8 +35,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.event.RegisterBodyStatsEvent
@@ -152,40 +143,17 @@ fun RegisterBodyStatsScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-
-            if (uiState.photoUri == null) {
-                OutlinedButton(
-                    onClick = { onEvent(RegisterBodyStatsEvent.OnAddPhotoClicked) },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(Icons.Default.Image, contentDescription = "Add Photo")
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Add Photo")
-                }
-            } else {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    AsyncImage(
-                        model = uiState.photoUri,
-                        contentDescription = "Progress Picture",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
-                            .clip(RoundedCornerShape(8.dp)),
-                        contentScale = ContentScale.Crop
-                    )
-                    OutlinedButton(
-                        onClick = { onEvent(RegisterBodyStatsEvent.OnRemovePhotoClicked) },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Icon(Icons.Default.Delete, contentDescription = "Remove Photo")
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text("Remove Photo")
-                    }
-                }
-            }
+            ImagePickerField(
+                label = "Progress Photo",
+                imageUri = uiState.photoUri,
+                onImageSelected = { uri ->
+                    onEvent(RegisterBodyStatsEvent.OnPhotoSelected(uri))
+                },
+                onImageRemoved = {
+                    onEvent(RegisterBodyStatsEvent.OnRemovePhotoClicked)
+                },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 
@@ -227,9 +195,4 @@ fun RegisterBodyStatsScreen(
             DatePicker(state = datePickerState)
         }
     }
-}
-
-@Composable
-fun AsyncImage(model: String, contentDescription: String, modifier: Modifier, contentScale: ContentScale) {
-    TODO("Not yet implemented")
 }

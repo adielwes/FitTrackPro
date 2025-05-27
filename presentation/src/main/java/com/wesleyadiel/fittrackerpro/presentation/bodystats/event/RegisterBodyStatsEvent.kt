@@ -5,7 +5,7 @@ sealed class RegisterBodyStatsEvent {
     data class OnBodyFatChanged(val value: String) : RegisterBodyStatsEvent()
     data class OnVisceralFatChanged(val value: String) : RegisterBodyStatsEvent()
     data class OnSkeletalMuscleChanged(val value: String) : RegisterBodyStatsEvent()
-    object OnAddPhotoClicked : RegisterBodyStatsEvent()
+    data class OnPhotoSelected(val uri: String) : RegisterBodyStatsEvent()
     object OnRemovePhotoClicked : RegisterBodyStatsEvent()
     data class OnDateChanged(val value: Long) : RegisterBodyStatsEvent()
 }

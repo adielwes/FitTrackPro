@@ -37,10 +37,11 @@ class RegisterBodyStatsViewModel @Inject constructor(
             is RegisterBodyStatsEvent.OnSkeletalMuscleChanged -> {
                 uiState.value = uiState.value.copy(skeletalMuscle = event.value)
             }
-            RegisterBodyStatsEvent.OnAddPhotoClicked -> {
-                // Open Image Picker on UI
+            is RegisterBodyStatsEvent.OnPhotoSelected -> {
+                uiState.value = uiState.value.copy(photoUri = event.uri)
             }
-            RegisterBodyStatsEvent.OnRemovePhotoClicked -> {
+
+            is RegisterBodyStatsEvent.OnRemovePhotoClicked -> {
                 uiState.value = uiState.value.copy(photoUri = null)
             }
             is RegisterBodyStatsEvent.OnDateChanged -> {

@@ -2,6 +2,7 @@
 accompanistSystemuicontroller = "0.36.0"
 activityCompose = "1.10.1"
 agp = "8.9.1"
+coilCompose = "2.5.0"
 hiltCompiler = "2.51.1"
 hiltNavigationCompose = "1.1.0"
 kotlin = "2.0.21"
@@ -29,6 +30,7 @@ androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "ui" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "ui" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "ui" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltCompiler" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
