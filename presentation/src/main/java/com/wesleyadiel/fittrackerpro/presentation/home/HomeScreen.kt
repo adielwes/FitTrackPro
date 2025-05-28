@@ -49,14 +49,12 @@ fun HomeScreen(navController: NavController) {
             onHistoryClick = { navController.navigate(BODY_STATS_LIST) }
         )
 
-        // Treino do dia
         WorkoutCard(
-            workoutName = "Treino A",
-            exercises = listOf("Agachamento 4x10", "Supino 4x10", "Remada 4x10"),
+            workoutName = "Workout A",
+            exercises = listOf("Squat 4x10", "Bench Press 4x10", "Bent-over Row 4x10"),
             onStartWorkout = { navController.navigate("workout") }
         )
 
-        // Plano de treino
         WorkoutPlanCard(
             onEditPlan = { navController.navigate("workoutPlan") }
         )

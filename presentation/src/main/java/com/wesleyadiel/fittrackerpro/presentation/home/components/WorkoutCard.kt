@@ -25,14 +25,14 @@ fun WorkoutCard(
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text("Treino de Hoje: $workoutName", style = MaterialTheme.typography.titleMedium)
+            Text("Today's Routine: $workoutName", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
             exercises.forEach { exercise ->
                 Text("• $exercise")
             }
             Spacer(Modifier.height(8.dp))
             Button(onClick = onStartWorkout) {
-                Text("Iniciar Treino")
+                Text("Start Workout")
             }
         }
     }

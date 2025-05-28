@@ -23,10 +23,10 @@ fun WorkoutPlanCard(
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text("Plano de Treino", style = MaterialTheme.typography.titleMedium)
+            Text("Workout Plan", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
             Button(onClick = onEditPlan) {
-                Text("Editar Plano de Treino")
+                Text("Edit Workout Plan")
             }
         }
     }

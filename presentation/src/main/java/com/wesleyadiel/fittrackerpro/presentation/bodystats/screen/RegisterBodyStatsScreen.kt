@@ -54,7 +54,6 @@ fun RegisterBodyStatsScreen(
 ) {
 
     var showDatePicker by remember { mutableStateOf(false) }
-    val interactionSource = remember { MutableInteractionSource() }
 
     Scaffold(
         topBar = {
@@ -78,7 +77,7 @@ fun RegisterBodyStatsScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
-                Text("Salvar Progresso")
+                Text("Save Progress")
             }
         }
     ) { padding ->
