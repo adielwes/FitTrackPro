@@ -52,9 +52,12 @@ fun AppNavHost() {
         }
 
         composable(Routes.BODY_STATS_LIST) {
-            BodyStatsScreen(onNavigateToDetail = { id ->
-                navController.navigate("body_stats_detail/$id")
-            })
+            BodyStatsScreen(
+                onNavigateToDetail = { id ->
+                    navController.navigate("body_stats_detail/$id")
+                },
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
 
         composable("workout_detail/{id}") { backStackEntry ->
