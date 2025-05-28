@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.time.LocalDate
 import javax.inject.Inject
 
 class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
@@ -13,7 +14,7 @@ class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
     private val fakeStats = MutableStateFlow<List<BodyStats>>(listOf(
         BodyStats(
             id = 1L,
-            date = System.currentTimeMillis(),
+            date = LocalDate.now().toEpochDay(),
             weightKg = 73.5,
             bodyFatPercentage = 16.2,
             visceralFat = 9.0,
@@ -22,7 +23,7 @@ class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
         ),
         BodyStats(
             id = 2L,
-            date = System.currentTimeMillis() - 1000 * 60 * 60 * 24 * 30, // 1 mês atrás
+            date = LocalDate.ofYearDay(2025, 35).toEpochDay(), // random date, 04/02/2025
             weightKg = 75.2,
             bodyFatPercentage = 17.0,
             visceralFat = 10.0,

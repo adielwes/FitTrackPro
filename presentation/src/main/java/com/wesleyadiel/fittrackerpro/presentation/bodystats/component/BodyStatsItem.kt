@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun BodyStatsItem(bodyStats: BodyStats, modifier: Modifier = Modifier) {
@@ -19,7 +21,10 @@ fun BodyStatsItem(bodyStats: BodyStats, modifier: Modifier = Modifier) {
         elevation = 4.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Date: ${bodyStats.date}")
+            Text(text = "Date: ${
+                LocalDate.ofEpochDay(bodyStats.date)
+                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            }")
             Text(text = "Weight: ${bodyStats.weightKg} kg")
             Text(text = "Muscle mass: ${bodyStats.skeletalMuscleMassKg} kg")
             Text(text = "Body fat: ${bodyStats.bodyFatPercentage}%")
