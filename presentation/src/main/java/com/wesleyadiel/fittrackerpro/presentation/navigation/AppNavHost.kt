@@ -72,7 +72,7 @@ fun AppNavHost() {
 
         composable("body_stats_detail/{id}") { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")?.toLongOrNull()
-            BodyStatsDetailScreen(id)
+            BodyStatsDetailScreen(id = id,  onNavigateBack = { navController.popBackStack() })
         }
     }
 }
