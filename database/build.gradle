@@ -6,13 +6,12 @@ plugins {
 }
 
 android {
-    namespace "com.wesleyadiel.fittrackpro.data"
+    namespace "com.wesleyadiel.fittrackpro.database"
 }
 
 dependencies {
-    implementation project(":domain")
-    implementation project(":database")
-
     implementation libs.hilt.android
+    implementation libs.androidx.room.runtime
     kapt libs.hilt.compiler
+    kapt libs.androidx.room.compiler
 }

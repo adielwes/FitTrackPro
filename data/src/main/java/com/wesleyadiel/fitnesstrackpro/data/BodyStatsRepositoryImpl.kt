@@ -1,15 +1,21 @@
 package com.wesleyadiel.fitnesstrackpro.data
 
+import com.wesleyadiel.fitnesstrackpro.data.mapper.toDomain
+import com.wesleyadiel.fitnesstrackpro.data.mapper.toEntity
+import com.wesleyadiel.fitnesstrackpro.database.bodystats.BodyStatsDao
 import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
 import com.wesleyadiel.fittrackerpro.domain.bodystats.repository.BodyStatsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import java.time.LocalDate
 import javax.inject.Inject
 
-class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
+class BodyStatsRepositoryImpl @Inject constructor(
+    private val dao: BodyStatsDao
+) : BodyStatsRepository {
 
     private val fakeStats = MutableStateFlow<List<BodyStats>>(listOf(
         BodyStats(
@@ -33,21 +39,13 @@ class BodyStatsRepositoryImpl @Inject constructor() : BodyStatsRepository {
     ))
 
 
-    override fun getAllBodyStats(): Flow<List<BodyStats>> = fakeStats.asStateFlow()
-
-    override suspend fun getBodyStatsById(id: Long): BodyStats? {
-        return fakeStats.value.find { it.id == id }
+    override fun getAllBodyStats(): Flow<List<BodyStats>> = dao.getAll().map {
+        it.map { it.toDomain() }
     }
 
-    override suspend fun addBodyStats(bodyStats: BodyStats) {
-        fakeStats.update { current ->
-            current + bodyStats.copy(id = (current.maxOfOrNull { it.id } ?: 0L) + 1)
-        }
-    }
+    override suspend fun getBodyStatsById(id: Long): BodyStats? = dao.getById(id)?.toDomain()
 
-    override suspend fun deleteBodyStats(id: Long) {
-        fakeStats.update { current ->
-            current.filterNot { it.id == id }
-        }
-    }
+    override suspend fun addBodyStats(bodyStats: BodyStats) = dao.insert(bodyStats.toEntity())
+
+    override suspend fun deleteBodyStats(bodyStats: BodyStats) = dao.delete(bodyStats.toEntity())
 }

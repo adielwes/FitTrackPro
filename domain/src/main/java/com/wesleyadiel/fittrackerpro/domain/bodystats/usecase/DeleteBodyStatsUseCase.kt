@@ -5,5 +5,5 @@ import com.wesleyadiel.fittrackerpro.domain.bodystats.repository.BodyStatsReposi
 
 class DeleteBodyStatsUseCase(private val repository: BodyStatsRepository) {
 
-    suspend operator fun invoke(bodyStats: BodyStats) = repository.deleteBodyStats(bodyStats.id)
+    suspend operator fun invoke(bodyStats: BodyStats) = repository.deleteBodyStats(bodyStats)
 }

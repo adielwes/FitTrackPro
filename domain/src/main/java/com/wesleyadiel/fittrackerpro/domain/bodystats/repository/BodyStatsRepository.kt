@@ -7,5 +7,5 @@ interface BodyStatsRepository {
     fun getAllBodyStats(): Flow<List<BodyStats>>
     suspend fun getBodyStatsById(id: Long): BodyStats?
     suspend fun addBodyStats(bodyStats: BodyStats)
-    suspend fun deleteBodyStats(id: Long)
+    suspend fun deleteBodyStats(bodyStats: BodyStats)
 }
