@@ -15,11 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.wesleyadiel.fittrackerpro.presentation.home.components.ProgressSummary
-import com.wesleyadiel.fittrackerpro.presentation.home.components.WorkoutCard
-import com.wesleyadiel.fittrackerpro.presentation.home.components.WorkoutPlanCard
 import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.BODY_STATS_LIST
 import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.REGISTER_BODY_STATS_ROUTE
-import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.WORKOUT_LIST
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -48,16 +45,6 @@ fun HomeScreen(navController: NavController) {
             muscleMass = 35.0,
             onRegisterClick = { navController.navigate(REGISTER_BODY_STATS_ROUTE) },
             onHistoryClick = { navController.navigate(BODY_STATS_LIST) }
-        )
-
-        WorkoutCard(
-            workoutName = "Workout A",
-            exercises = listOf("Squat 4x10", "Bench Press 4x10", "Bent-over Row 4x10"),
-            onStartWorkout = { navController.navigate("workout_detail/1") }
-        )
-
-        WorkoutPlanCard(
-            onEditPlan = { navController.navigate(WORKOUT_LIST) }
         )
     }
 }

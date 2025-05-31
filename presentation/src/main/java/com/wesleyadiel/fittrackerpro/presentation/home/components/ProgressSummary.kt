@@ -32,7 +32,7 @@ fun ProgressSummary(
         Column(modifier = Modifier.padding(16.dp)) {
             Text("Physical Progress", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
-            Text("Wight: ${weight}kg")
+            Text("Weight: ${weight}kg")
             Text("Body Fat: ${bodyFat}%")
             Text("Skeletal Muscular Mass: ${muscleMass}kg")
             Spacer(Modifier.height(8.dp))
