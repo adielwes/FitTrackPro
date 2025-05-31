@@ -19,6 +19,7 @@ import com.wesleyadiel.fittrackerpro.presentation.home.components.WorkoutCard
 import com.wesleyadiel.fittrackerpro.presentation.home.components.WorkoutPlanCard
 import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.BODY_STATS_LIST
 import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.REGISTER_BODY_STATS_ROUTE
+import com.wesleyadiel.fittrackerpro.presentation.navigation.Routes.WORKOUT_LIST
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -52,11 +53,11 @@ fun HomeScreen(navController: NavController) {
         WorkoutCard(
             workoutName = "Workout A",
             exercises = listOf("Squat 4x10", "Bench Press 4x10", "Bent-over Row 4x10"),
-            onStartWorkout = { navController.navigate("workout") }
+            onStartWorkout = { navController.navigate("workout_detail/1") }
         )
 
         WorkoutPlanCard(
-            onEditPlan = { navController.navigate("workoutPlan") }
+            onEditPlan = { navController.navigate(WORKOUT_LIST) }
         )
     }
 }
