@@ -3,6 +3,8 @@ package com.wesleyadiel.fitnesstrackpro.data.image
 import android.content.Context
 import android.net.Uri
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import javax.inject.Inject
@@ -11,9 +13,10 @@ class ImageStorageManager @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 
-    fun saveImageToInternalStorage(sourceUri: Uri): String? {
-        return try {
-            val inputStream = context.contentResolver.openInputStream(sourceUri) ?: return null
+    suspend fun saveImageToInternalStorage(sourceUri: Uri): String? = withContext(Dispatchers.IO) {
+        try {
+            val inputStream = context.contentResolver.openInputStream(sourceUri) ?:
+                return@withContext null
             val fileName = "body_stats_${System.currentTimeMillis()}.jpg"
             val file = File(context.filesDir, fileName)
             inputStream.use { input ->
@@ -28,8 +31,8 @@ class ImageStorageManager @Inject constructor(
         }
     }
 
-    fun deleteImageFromInternalStorage(path: String?) {
-        if (path.isNullOrEmpty()) return
+    suspend fun deleteImageFromInternalStorage(path: String?) = withContext(Dispatchers.IO) {
+        if (path.isNullOrEmpty()) return@withContext
         try {
             val file = File(path)
             if (file.exists()) {
