@@ -3,9 +3,9 @@ package com.wesleyadiel.fittrackerpro.domain.bodystats.model
 data class BodyStats(
     val id: Long,
     val date: Long,
-    val weightKg: Double,
-    val bodyFatPercentage: Double,
+    val weight: Double,
+    val bodyFat: Double,
     val visceralFat: Double,
-    val skeletalMuscleMassKg: Double,
-    val photoUri: String? = null
+    val skeletalMuscle: Double,
+    val imageUri: String? = null
 )

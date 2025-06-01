@@ -6,21 +6,23 @@ import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
 fun BodyStatsEntity.toDomain(): BodyStats {
     return BodyStats(
         id = id,
-        weightKg = weight,
-        bodyFatPercentage = bodyFat,
+        weight = weight,
+        bodyFat = bodyFat,
         visceralFat = visceralFat,
-        skeletalMuscleMassKg = skeletalMuscle,
-        date = date
+        skeletalMuscle = skeletalMuscle,
+        date = date,
+        imageUri = imageUri
     )
 }
 
 fun BodyStats.toEntity(): BodyStatsEntity {
     return BodyStatsEntity(
         id = id,
-        weight = weightKg,
-        bodyFat = bodyFatPercentage,
+        weight = weight,
+        bodyFat = bodyFat,
         visceralFat = visceralFat,
-        skeletalMuscle = skeletalMuscleMassKg,
-        date = date
+        skeletalMuscle = skeletalMuscle,
+        date = date,
+        imageUri = imageUri
     )
 }

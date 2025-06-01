@@ -72,9 +72,9 @@ fun BodyStatsDetailScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text("Weight: ${bodyStat.weightKg} kg")
-                Text("Body Fat: ${bodyStat.bodyFatPercentage}%")
-                Text("Muscle Mass: ${bodyStat.skeletalMuscleMassKg} kg")
+                Text("Weight: ${bodyStat.weight} kg")
+                Text("Body Fat: ${bodyStat.bodyFat}%")
+                Text("Muscle Mass: ${bodyStat.skeletalMuscle} kg")
                 Text("Visceral Fat: ${bodyStat.visceralFat}")
             }else if (state.value.isLoading) {
                 CircularProgressIndicator()

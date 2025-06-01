@@ -69,11 +69,11 @@ class RegisterBodyStatsViewModel @Inject constructor(
         val bodyStats = BodyStats(
             id = 0,
             date = uiState.value.date,
-            weightKg = weight,
-            bodyFatPercentage = uiState.value.bodyFatPercentage.toDoubleOrNull() ?: 0.0,
+            weight = weight,
+            bodyFat = uiState.value.bodyFatPercentage.toDoubleOrNull() ?: 0.0,
             visceralFat = uiState.value.visceralFat.toDoubleOrNull() ?: 0.0,
-            skeletalMuscleMassKg = uiState.value.skeletalMuscle.toDoubleOrNull() ?: 0.0,
-            photoUri = uiState.value.photoUri
+            skeletalMuscle = uiState.value.skeletalMuscle.toDoubleOrNull() ?: 0.0,
+            imageUri = uiState.value.photoUri
         )
 
         viewModelScope.launch {

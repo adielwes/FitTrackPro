@@ -7,9 +7,7 @@ import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
 import com.wesleyadiel.fittrackerpro.domain.bodystats.repository.BodyStatsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.update
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -21,20 +19,20 @@ class BodyStatsRepositoryImpl @Inject constructor(
         BodyStats(
             id = 1L,
             date = LocalDate.now().toEpochDay(),
-            weightKg = 73.5,
-            bodyFatPercentage = 16.2,
+            weight = 73.5,
+            bodyFat = 16.2,
             visceralFat = 9.0,
-            skeletalMuscleMassKg = 32.1,
-            photoUri = null
+            skeletalMuscle = 32.1,
+            imageUri = null
         ),
         BodyStats(
             id = 2L,
             date = LocalDate.ofYearDay(2025, 35).toEpochDay(), // random date, 04/02/2025
-            weightKg = 75.2,
-            bodyFatPercentage = 17.0,
+            weight = 75.2,
+            bodyFat = 17.0,
             visceralFat = 10.0,
-            skeletalMuscleMassKg = 31.8,
-            photoUri = null
+            skeletalMuscle = 31.8,
+            imageUri = null
         )
     ))
 

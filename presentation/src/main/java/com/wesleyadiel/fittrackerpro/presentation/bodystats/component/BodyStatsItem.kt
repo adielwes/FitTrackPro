@@ -25,9 +25,9 @@ fun BodyStatsItem(bodyStats: BodyStats, modifier: Modifier = Modifier) {
                 LocalDate.ofEpochDay(bodyStats.date)
                     .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             }")
-            Text(text = "Weight: ${bodyStats.weightKg} kg")
-            Text(text = "Muscle mass: ${bodyStats.skeletalMuscleMassKg} kg")
-            Text(text = "Body fat: ${bodyStats.bodyFatPercentage}%")
+            Text(text = "Weight: ${bodyStats.weight} kg")
+            Text(text = "Muscle mass: ${bodyStats.skeletalMuscle} kg")
+            Text(text = "Body fat: ${bodyStats.bodyFat}%")
             Text(text = "Visceral fat: ${bodyStats.visceralFat}")
         }
     }

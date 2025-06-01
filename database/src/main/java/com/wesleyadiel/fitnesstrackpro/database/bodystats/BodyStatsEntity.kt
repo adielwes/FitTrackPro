@@ -10,5 +10,6 @@ data class BodyStatsEntity(
     val bodyFat: Double,
     val visceralFat: Double,
     val skeletalMuscle: Double,
-    val date: Long
+    val date: Long,
+    val imageUri: String? = null
 )
