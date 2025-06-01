@@ -1,4 +1,5 @@
 package com.wesleyadiel.fittrackerpro.presentation.bodystats.viewmodel
+import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -50,7 +51,7 @@ class RegisterBodyStatsViewModel @Inject constructor(
         }
     }
 
-    fun updatePhoto(uri: String) {
+    fun updatePhoto(uri: Uri) {
         uiState.value = uiState.value.copy(photoUri = uri)
     }
 
@@ -73,11 +74,11 @@ class RegisterBodyStatsViewModel @Inject constructor(
             bodyFat = uiState.value.bodyFatPercentage.toDoubleOrNull() ?: 0.0,
             visceralFat = uiState.value.visceralFat.toDoubleOrNull() ?: 0.0,
             skeletalMuscle = uiState.value.skeletalMuscle.toDoubleOrNull() ?: 0.0,
-            imageUri = uiState.value.photoUri
+            imageUri = null
         )
 
         viewModelScope.launch {
-            addBodyStatsUseCase(bodyStats)
+            addBodyStatsUseCase(bodyStats, uiState.value.photoUri)
         }
     }
 }

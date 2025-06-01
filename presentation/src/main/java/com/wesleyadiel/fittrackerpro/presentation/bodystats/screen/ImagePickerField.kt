@@ -27,15 +27,15 @@ import coil.compose.AsyncImage
 @Composable
 fun ImagePickerField(
     label: String = "Photo",
-    imageUri: String?,
-    onImageSelected: (String) -> Unit,
+    imageUri: Uri?,
+    onImageSelected: (Uri) -> Unit,
     onImageRemoved: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
-        uri?.let { onImageSelected(it.toString()) }
+        uri?.let { onImageSelected(it) }
     }
 
     Column(

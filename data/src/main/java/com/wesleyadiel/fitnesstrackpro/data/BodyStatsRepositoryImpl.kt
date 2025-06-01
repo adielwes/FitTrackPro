@@ -1,41 +1,20 @@
 package com.wesleyadiel.fitnesstrackpro.data
 
+import android.net.Uri
+import com.wesleyadiel.fitnesstrackpro.data.image.ImageStorageManager
 import com.wesleyadiel.fitnesstrackpro.data.mapper.toDomain
 import com.wesleyadiel.fitnesstrackpro.data.mapper.toEntity
 import com.wesleyadiel.fitnesstrackpro.database.bodystats.BodyStatsDao
 import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
 import com.wesleyadiel.fittrackerpro.domain.bodystats.repository.BodyStatsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
-import java.time.LocalDate
 import javax.inject.Inject
 
 class BodyStatsRepositoryImpl @Inject constructor(
-    private val dao: BodyStatsDao
+    private val dao: BodyStatsDao,
+    private val imageStorageManager: ImageStorageManager
 ) : BodyStatsRepository {
-
-    private val fakeStats = MutableStateFlow<List<BodyStats>>(listOf(
-        BodyStats(
-            id = 1L,
-            date = LocalDate.now().toEpochDay(),
-            weight = 73.5,
-            bodyFat = 16.2,
-            visceralFat = 9.0,
-            skeletalMuscle = 32.1,
-            imageUri = null
-        ),
-        BodyStats(
-            id = 2L,
-            date = LocalDate.ofYearDay(2025, 35).toEpochDay(), // random date, 04/02/2025
-            weight = 75.2,
-            bodyFat = 17.0,
-            visceralFat = 10.0,
-            skeletalMuscle = 31.8,
-            imageUri = null
-        )
-    ))
-
 
     override fun getAllBodyStats(): Flow<List<BodyStats>> = dao.getAll().map {
         it.map { it.toDomain() }
@@ -43,7 +22,14 @@ class BodyStatsRepositoryImpl @Inject constructor(
 
     override suspend fun getBodyStatsById(id: Long): BodyStats? = dao.getById(id)?.toDomain()
 
-    override suspend fun addBodyStats(bodyStats: BodyStats) = dao.insert(bodyStats.toEntity())
+    override suspend fun addBodyStats(bodyStats: BodyStats, imageUri: Uri?) {
+        val savedPath = imageUri?.let { imageStorageManager.saveImageToInternalStorage(it) }
+        val entity = bodyStats.copy(imageUri = savedPath).toEntity()
+        dao.insert(entity)
+    }
 
-    override suspend fun deleteBodyStats(bodyStats: BodyStats) = dao.delete(bodyStats.toEntity())
+    override suspend fun deleteBodyStats(bodyStats: BodyStats) {
+        imageStorageManager.deleteImageFromInternalStorage(bodyStats.imageUri)
+        dao.delete(bodyStats.toEntity())
+    }
 }
