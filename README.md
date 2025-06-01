@@ -1,27 +1,36 @@
 ## 🏋️ TrackFit – Gym & Nutrition Tracker
 
-**TrackFit** is a modern Android app built to help users manage their workout routines, track their diet, and monitor body progress over time. Designed with clean architecture principles, this project also serves as a **technical showcase** for Android development best practices.
+**TrackFit** is a modern Android app designed to help users manage workout routines, monitor nutrition, and track physical progress. Built with **Clean Architecture** principles, it also serves as a **technical showcase** for Android development best practices.
+
+> 🚧 **Project status**: TrackFit is currently under active development. The **Body Stats** feature — which allows users to track weight, body fat percentage, and compare progress photos over time — is the core of the MVP and is being prioritized. Additional features such as workout and meal tracking will be added in future iterations.
 
 ---
 
-### 📱 Features
+### 📱 Current Feature
 
-- Register daily workouts and meals
-- Visualize monthly progress through weight, body fat %, and comparison photos
-- Reuse predefined training and diet plans
-- Local storage with Room database
-- Reminders and background tasks via WorkManager
-- Secure data handling with encrypted preferences
+- 📊 **Body Stats Tracking**:
+    - Log body weight, body fat %, and visceral fat
+    - Attach progress photos
+    - Visualize historical data
+
+---
+
+### 🚀 Planned Features
+
+- 💪 Workout logging and training plan reuse
+- 🍽️ Meal tracking and diet templates
+- ⏰ Reminders with WorkManager
+- 🔐 Secure data storage using encrypted preferences
 
 ---
 
 ### 🧠 Architecture & Tech Stack
 
-- **Architecture**: MVVM + Clean Architecture (Domain, Data, and UI layers)
-- **UI**: Jetpack Compose
-- **State Management**: ViewModel + LiveData / StateFlow
-- **Database**: Room
-- **Background Work**: WorkManager
+- **Architecture**: MVVM + Clean Architecture (UI, Domain, and Data layers)
+- **UI Toolkit**: Jetpack Compose
+- **State Management**: ViewModel + StateFlow / LiveData
+- **Persistence**: Room
+- **Background Tasks**: WorkManager
 - **Dependency Injection**: Hilt
 - **Navigation**: Jetpack Navigation Component
-- **Asynchronous Programming**: Kotlin Coroutines & Flow
+- **Concurrency**: Kotlin Coroutines & Flow
