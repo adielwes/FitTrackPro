@@ -10,6 +10,7 @@ import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.BodyStatsScre
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.screen.RegisterBodyStatsScreen
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.viewmodel.RegisterBodyStatsViewModel
 import com.wesleyadiel.fittrackerpro.presentation.home.HomeScreen
+import com.wesleyadiel.fittrackerpro.presentation.home.HomeViewModel
 import com.wesleyadiel.fittrackerpro.presentation.meal.screen.MealDetailScreen
 import com.wesleyadiel.fittrackerpro.presentation.meal.screen.MealScreen
 import com.wesleyadiel.fittrackerpro.presentation.workout.screen.WorkoutDetailScreen
@@ -23,7 +24,8 @@ fun AppNavHost() {
 
     NavHost(navController = navController, startDestination = Routes.HOME_SCREEN) {
         composable(Routes.HOME_SCREEN) {
-            HomeScreen(navController)
+            val viewModel: HomeViewModel = hiltViewModel()
+            HomeScreen(navController, viewModel)
         }
 
         composable(route = Routes.REGISTER_BODY_STATS_ROUTE) {

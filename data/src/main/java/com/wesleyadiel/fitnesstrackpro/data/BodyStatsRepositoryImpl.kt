@@ -22,6 +22,9 @@ class BodyStatsRepositoryImpl @Inject constructor(
 
     override suspend fun getBodyStatsById(id: Long): BodyStats? = dao.getById(id)?.toDomain()
 
+    override suspend fun getLatestBodyStats(): BodyStats? =
+        dao.getLatestBodyStats()?.toDomain()
+
     override suspend fun addBodyStats(bodyStats: BodyStats, imageUri: Uri?) {
         val savedPath = imageUri?.let { imageStorageManager.saveImageToInternalStorage(it) }
         val entity = bodyStats.copy(imageUri = savedPath).toEntity()

@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface BodyStatsRepository {
     fun getAllBodyStats(): Flow<List<BodyStats>>
     suspend fun getBodyStatsById(id: Long): BodyStats?
+    suspend fun getLatestBodyStats(): BodyStats?
     suspend fun addBodyStats(bodyStats: BodyStats, imageUri: Uri?)
     suspend fun deleteBodyStats(bodyStats: BodyStats)
 }

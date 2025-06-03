@@ -14,14 +14,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.wesleyadiel.fittrackerpro.domain.bodystats.model.BodyStats
 
 @Composable
 fun ProgressSummary(
-    weight: Double,
-    bodyFat: Double,
-    muscleMass: Double,
+    bodyStats: State<BodyStats?>,
     onRegisterClick: () -> Unit,
     onHistoryClick: () -> Unit
 ) {
@@ -32,9 +32,15 @@ fun ProgressSummary(
         Column(modifier = Modifier.padding(16.dp)) {
             Text("Physical Progress", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
-            Text("Weight: ${weight}kg")
-            Text("Body Fat: ${bodyFat}%")
-            Text("Skeletal Muscular Mass: ${muscleMass}kg")
+
+            if (bodyStats.value != null) {
+                Text("Weight: ${bodyStats.value?.weight}kg")
+                Text("Body Fat: ${bodyStats.value?.bodyFat}%")
+                Text("Skeletal Muscular Mass: ${bodyStats.value?.skeletalMuscle}kg")
+            } else {
+                Text("No body stats registered.")
+            }
+
             Spacer(Modifier.height(8.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -42,7 +48,10 @@ fun ProgressSummary(
                 Button(onClick = onRegisterClick) {
                     Text("Register Progress")
                 }
-                OutlinedButton(onClick = onHistoryClick) {
+                OutlinedButton(
+                    onClick = onHistoryClick,
+                    enabled = bodyStats.value != null
+                ) {
                     Text("See History")
                 }
             }

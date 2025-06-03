@@ -5,6 +5,7 @@ import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.AddBodyStatsUseCas
 import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.DeleteBodyStatsUseCase
 import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetAllBodyStatsUseCase
 import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetBodyStatsUseCase
+import com.wesleyadiel.fittrackerpro.domain.bodystats.usecase.GetLatestBodyStatsUseCase
 import com.wesleyadiel.fittrackerpro.domain.meal.repository.MealRepository
 import com.wesleyadiel.fittrackerpro.domain.meal.usecase.AddMeal
 import com.wesleyadiel.fittrackerpro.domain.meal.usecase.DeleteMeal
@@ -33,6 +34,11 @@ object UseCaseModule {
     fun provideGetBodyStatsById(
         repository: BodyStatsRepository
     ): GetBodyStatsUseCase = GetBodyStatsUseCase(repository)
+
+    @Provides
+    fun provideGetLatestBodyStatsUseCase(
+        repository: BodyStatsRepository
+    ): GetLatestBodyStatsUseCase = GetLatestBodyStatsUseCase(repository)
 
     @Provides
     fun provideAddBodyStats(

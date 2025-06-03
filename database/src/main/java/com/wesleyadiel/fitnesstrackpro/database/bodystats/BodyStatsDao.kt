@@ -15,6 +15,9 @@ interface BodyStatsDao {
     @Query("SELECT * FROM body_stats WHERE id = :id LIMIT 1")
     suspend fun getById(id: Long): BodyStatsEntity?
 
+    @Query("SELECT * FROM body_stats ORDER BY date DESC LIMIT 1")
+    suspend fun getLatestBodyStats(): BodyStatsEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(bodyStats: BodyStatsEntity)
 
