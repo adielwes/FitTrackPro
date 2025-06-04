@@ -41,7 +41,7 @@ import com.wesleyadiel.fittrackerpro.presentation.bodystats.event.RegisterBodySt
 import com.wesleyadiel.fittrackerpro.presentation.bodystats.state.RegisterBodyStatsUiState
 import java.time.Instant
 import java.time.LocalDate
-import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -159,7 +159,7 @@ fun RegisterBodyStatsScreen(
     if (showDatePicker) {
         val datePickerState = rememberDatePickerState(
             initialSelectedDateMillis = LocalDate.ofEpochDay(uiState.date)
-                .atStartOfDay(ZoneId.systemDefault())
+                .atStartOfDay(ZoneOffset.UTC)
                 .toInstant()
                 .toEpochMilli()
         )
@@ -171,7 +171,7 @@ fun RegisterBodyStatsScreen(
                     onClick = {
                         datePickerState.selectedDateMillis?.let { millis ->
                             val date = Instant.ofEpochMilli(millis)
-                                .atZone(ZoneId.systemDefault())
+                                .atZone(ZoneOffset.UTC)
                                 .toLocalDate()
                             onEvent(
                                 RegisterBodyStatsEvent.OnDateChanged(
