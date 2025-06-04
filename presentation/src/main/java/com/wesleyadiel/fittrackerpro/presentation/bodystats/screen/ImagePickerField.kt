@@ -6,6 +6,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -54,16 +56,6 @@ fun ImagePickerField(
                 Text("Add Photo")
             }
         } else {
-            AsyncImage(
-                model = imageUri,
-                contentDescription = "Selected Photo",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .clip(RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.Crop
-            )
-
             OutlinedButton(
                 onClick = onImageRemoved,
                 modifier = Modifier.fillMaxWidth()
@@ -72,6 +64,16 @@ fun ImagePickerField(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text("Remove Photo")
             }
+
+            AsyncImage(
+                model = imageUri,
+                contentDescription = "Selected Photo",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(500.dp)
+                    .clip(RoundedCornerShape(8.dp)),
+                contentScale = ContentScale.Crop
+            )
         }
     }
 }
