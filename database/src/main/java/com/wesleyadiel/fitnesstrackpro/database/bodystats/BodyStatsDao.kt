@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BodyStatsDao {
-    @Query("SELECT * FROM body_stats ORDER BY date DESC")
+    @Query("SELECT * FROM body_stats ORDER BY date DESC, id DESC")
     fun getAll(): Flow<List<BodyStatsEntity>>
 
     @Query("SELECT * FROM body_stats WHERE id = :id LIMIT 1")
     suspend fun getById(id: Long): BodyStatsEntity?
 
-    @Query("SELECT * FROM body_stats ORDER BY date DESC LIMIT 1")
+    @Query("SELECT * FROM body_stats ORDER BY date DESC, id DESC LIMIT 1")
     suspend fun getLatestBodyStats(): BodyStatsEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
