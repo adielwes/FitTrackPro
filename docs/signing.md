@@ -94,7 +94,8 @@ Make sure to exclude keystore.jks from version control by adding it to .gitignor
 ---
 
 🔐 Security notice
-Do NOT commit your .jks file or any passwords to the repository.
+
+Do NOT commit your .jks file or any passwords to your Github repository.
 
 Every developer should generate their own local keystore when building the app.
 
