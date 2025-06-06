@@ -9,6 +9,11 @@ jobs:
   build:
     name: Build Release Bundle
     runs-on: ubuntu-latest
+    env:
+      KEYSTORE_FILE: keystore.jks
+      SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+      SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+      SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
     steps:
       - name: Checkout code
@@ -19,6 +24,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
+
+      - name: Decode keystore
+        run: echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 -d > keystore.jks
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
