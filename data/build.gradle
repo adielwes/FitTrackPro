@@ -11,16 +11,8 @@ android {
 
 dependencies {
     implementation project(":domain")
-    implementation project(":core:ai")
     implementation project(":database")
 
     implementation libs.hilt.android
     kapt libs.hilt.compiler
-
-    testImplementation libs.junit
-    implementation libs.kotlin.test
-
-    testImplementation libs.mockito.core
-    testImplementation libs.mockito.kotlin
-    testImplementation libs.kotlinx.coroutines.test
 }
